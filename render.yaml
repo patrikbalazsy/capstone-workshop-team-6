@@ -1,0 +1,12 @@
+# Render free web service. Deploy: Render dashboard -> New -> Blueprint -> this repo.
+services:
+  - type: web
+    name: capstone-funding-tracker
+    runtime: python
+    plan: free
+    branch: adsense-graeme
+    buildCommand: pip install -r requirements.txt
+    startCommand: uvicorn app.main:app --host 0.0.0.0 --port $PORT
+    envVars:
+      - key: PYTHON_VERSION
+        value: "3.12.7"
