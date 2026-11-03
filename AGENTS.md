@@ -28,12 +28,19 @@ A team dashboard for funding opportunities: grants, startup competitions, incuba
 
 ## Team rules (agreed with the client)
 
-- Deadline labels go by `days_left` only, whatever the status.
+- Deadline labels only for open rows: status `Interested` or `Preparing`.
+- Rows with status `Submitted`, `Successful` or `Unsuccessful` get no label and no colour. Show the date only.
+- Labels, using `days_left`:
+  - `days_left < 0`: red, "Overdue"
+  - `days_left == 0`: yellow, "Due today"
+  - `days_left` 1 to 7: yellow, "Due in 1 day" / "Due in N days"
+  - `days_left > 7`: no label, no colour
 
 ## Rules
 
 - Keep the code simple. A beginner must be able to read it.
 - Don't add new libraries.
 - Plain JavaScript only. No React, no build step.
-- `days_left()` in `app/dates.py` is tested and correct. Always reuse it. Never count days another way.
-- Don't change `app/dates.py` or `tests/test_dates.py`. Other team apps use them.
+- Always use `days_left()` in `app/dates.py` for day counts. Never count days another way.
+- `days_left()` had an off-by-one bug (used the current time, so today gave `-1`). Fixed: it now compares dates only. Tests for today, tomorrow and yesterday are in `tests/test_deadline_cases.py`.
+- Don't change `tests/test_dates.py`. If you change `app/dates.py`, tell the other teams; their apps use it.

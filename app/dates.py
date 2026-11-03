@@ -5,5 +5,6 @@ def days_left(deadline: date) -> int:
     """Return how many days are left until the deadline.
 
     0 on the deadline day, 1 the day before, -1 the day after.
+    Negative means the deadline has passed.
     """
     return (deadline - date.today()).days

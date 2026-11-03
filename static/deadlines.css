@@ -1,14 +1,11 @@
-/* Styles for deadlines.js. */
-
-.deadline-label {
-  display: block;
-  width: fit-content;
-  margin-top: 4px;
-  padding: 2px 8px;
-  border-radius: 999px;
-  font-size: 0.8rem;
-  font-weight: 600;
+.deadline-overdue td:nth-child(2) {
+  color: #b91c1c;
+  font-weight: 700;
 }
 
-.deadline-overdue { background: #fdecec; color: #991b1b; }
-.deadline-soon { background: #fef3c7; color: #92400e; }
+.deadline-today td:nth-child(2),
+.deadline-soon td:nth-child(2) {
+  color: #92400e;
+  font-weight: 700;
+  background: #fef3c7;
+}

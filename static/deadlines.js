@@ -5,25 +5,28 @@
 //
 // Labels go by days_left only, whatever the status (see AGENTS.md).
 function showDeadline(row, cell, opportunity) {
-  const days = opportunity.days_left;
-  let text = "";
-  let colour = "";
-
-  if (days < 0) {
-    text = "Overdue";
-    colour = "deadline-overdue";
-  } else if (days === 0) {
-    text = "Due today";
-    colour = "deadline-soon";
-  } else if (days <= 7) {
-    text = "Due in " + days + (days === 1 ? " day" : " days");
-    colour = "deadline-soon";
-  } else {
+  // Finished rows need no deadline warning: just show the date.
+  const finished = ["Submitted", "Successful", "Unsuccessful"];
+  if (finished.includes(opportunity.status)) {
     return;
   }
 
-  const label = document.createElement("span");
-  label.className = "deadline-label " + colour;
-  label.textContent = text;
-  cell.appendChild(label);
+  const daysLeft = opportunity.days_left;
+
+  if (daysLeft < 0) {
+    row.classList.add("deadline-overdue");
+    cell.textContent = "Overdue";
+    return;
+  }
+
+  if (daysLeft === 0) {
+    row.classList.add("deadline-today");
+    cell.textContent = "Due today";
+    return;
+  }
+
+  if (daysLeft <= 7) {
+    row.classList.add("deadline-soon");
+    cell.textContent = `Due in ${daysLeft} day${daysLeft === 1 ? "" : "s"}`;
+  }
 }
