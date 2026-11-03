@@ -19,6 +19,12 @@ def index():
     return FileResponse(STATIC_DIR / "index.html")
 
 
+@app.get("/ads.txt")
+def ads_txt():
+    """Serve ads.txt so Google AdSense can verify the site."""
+    return FileResponse(STATIC_DIR / "ads.txt", media_type="text/plain")
+
+
 @app.get("/api/opportunities")
 def list_opportunities():
     """List all opportunities, with days_left added to each one."""
