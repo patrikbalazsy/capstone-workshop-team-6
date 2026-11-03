@@ -25,6 +25,8 @@ async function renderTable() {
 
     const deadlineCell = addCell(row, formatDate(opportunity.deadline));
     showDeadline(row, deadlineCell, opportunity); // in deadlines.js
+    const open = ["Interested", "Preparing"].includes(opportunity.status);
+    addCell(row, opportunity.days_left < 0 && open ? "Fail" : "Pass");
 
     const ownerCell = addCell(row, "");
     const avatar = document.createElement("span");
