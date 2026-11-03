@@ -3,6 +3,12 @@
 //   cell         the deadline cell (<td>)
 //   opportunity  the row's data, including days_left from the server
 function showDeadline(row, cell, opportunity) {
+  // Finished rows need no deadline warning: just show the date.
+  const finished = ["Submitted", "Successful", "Unsuccessful"];
+  if (finished.includes(opportunity.status)) {
+    return;
+  }
+
   const daysLeft = opportunity.days_left;
 
   if (daysLeft < 0) {
