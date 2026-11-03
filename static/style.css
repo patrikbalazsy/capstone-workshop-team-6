@@ -144,3 +144,7 @@ a.name:hover {
   font-size: 0.8rem;
   color: var(--muted);
 }
+
+.ad-slot {
+  margin-top: 20px;
+}
