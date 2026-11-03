@@ -1,3 +1,4 @@
+from datetime import timedelta
 from pathlib import Path
 
 from fastapi import FastAPI
@@ -25,6 +26,7 @@ def list_opportunities():
     result = []
     for opportunity in load_opportunities():
         row = opportunity.model_dump(mode="json")
-        row["days_left"] = days_left(opportunity.deadline)
+        # Keep the deadline valid through the end of its calendar date.
+        row["days_left"] = days_left(opportunity.deadline + timedelta(days=1))
         result.append(row)
     return result
