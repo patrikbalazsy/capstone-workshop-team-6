@@ -1,1 +1,11 @@
-/* Styles for deadlines.js. Empty for now. */
+.deadline-overdue td:nth-child(2) {
+  color: #b91c1c;
+  font-weight: 700;
+}
+
+.deadline-today td:nth-child(2),
+.deadline-soon td:nth-child(2) {
+  color: #92400e;
+  font-weight: 700;
+  background: #fef3c7;
+}
