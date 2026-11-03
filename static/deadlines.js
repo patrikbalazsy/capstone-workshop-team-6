@@ -2,6 +2,8 @@
 //   row          the table row (<tr>)
 //   cell         the deadline cell (<td>)
 //   opportunity  the row's data, including days_left from the server
+//
+// Labels go by days_left only, whatever the status (see AGENTS.md).
 function showDeadline(row, cell, opportunity) {
   // Finished rows need no deadline warning: just show the date.
   const finished = ["Submitted", "Successful", "Unsuccessful"];
